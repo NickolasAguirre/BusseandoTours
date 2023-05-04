@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Plantilla :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="/Plantilla :: header"></header>
+
+	<br>
+	
+	
+	<h5 >
+	<div class="container col-7">
+	
+	<h4 class="text-success text-center" style="letter-spacing: 3px;">PARA CONTINUAR, DEBERA REGISTRAR LOS DATOS DEL PASAJERO, GRACIAS</h4>
+	
+		
+		
+								
+			<div class="card bg-light ">
+
+				<div class="card-header bg-success text-white">Formulario:
+					Agregar Pasajero</div>
+					
+
+				<div class="card-body">
+					
+					
+					<form th:action="@{/pasajero/{idPaquete}/save(idPaquete=${idPaquete})}" th:object="${pasajeros}"
+						method="post" enctype="multipart/form-data">
+						
+						<div class="form-group row">
+						
+						<input type="hidden" th:value="${idPaquete}" th:field="*{Paquete}" id="Paquete" ></input>
+						
+								 
+								 
+						
+						
+							 <label
+								for="Nombre" class="col-md-2">Nombre:</label><br>
+							<br> <input type="text" th:field="*{Nombre}"
+								class="form-control form-control-lg" id="Nombre"
+								placeholder="Nombre del pasajero"> 
+								<small class="form-text text-muted">El nombre debe tener al menos 3 caracteres</small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="ApellidoPaterno" class="col-md-5">Apellido Paterno:</label><br>
+							<br> <input type="text" th:field="*{ApellidoPaterno}"
+								class="form-control form-control-lg" id="ApellidoPaterno"
+								placeholder="Apellido paterno del pasajero">
+						</div>
+						
+							<br>
+
+						<div class="form-group row">
+							<label for="ApellidoMaterno" class="col-md-5">Apellido Materno:</label><br>
+							<br> <input type="text" th:field="*{ApellidoMaterno}"
+								class="form-control form-control-lg" id="ApellidoMaterno"
+								placeholder="Apellido Materno del pasajero">
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="Telefono" class="col-md-5">Telefono:</label><br>
+							<br> <input type="text" th:field="*{Telefono}"
+								class="form-control form-control-lg" id="Telefono"
+								placeholder="Telefono del pasajero"> 
+								<small></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="Correo" class="col-md-5">E-mail:</label><br>
+							<br> <input type="text" th:field="*{Correo}"
+								class="form-control form-control-lg" id="Correo"
+								placeholder="Correo">
+								 <small></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="TipoDoc" class="col-md-5">Tipo de Documento:</label> <br>
+							<br> <input type="text" th:field="*{TipoDoc}"
+								class="form-control form-control-lg" id="TipoDoc"
+								placeholder="TipoDocumento"> <small></small>
+						</div>
+						<br>
+						
+						<div class="form-group row">
+							<label for="NumDoc" class="col-md-5">Número de Documento:</label> <br>
+							<br> <input type="text" th:field="*{NumDoc}"
+								class="form-control form-control-lg" id="NumDoc"
+								placeholder="NumDocumento"> <small></small>
+						</div>	 <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('NumDoc')}"
+								th:errors="*{NumDoc}"></small>
+						<br>
+						
+
+						<div class="card-footer bg-success">
+							<input type="submit" class="btn btn-outline-light me-2 btn-lg" value="CONTINUAR" />
+						</div>
+						
+						<br>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</h5>
+	
+	<script>
+  // Dar valor al idPaquete que se registrará
+  var paqueteInput = document.getElementById("Paquete");
+  
+  // Obtener valor del thymeleaf
+  paqueteInput.value = [[${idPaquete}]];;
+  
+</script>
+
+<script>
+	//Error en una ventana emergente, pero por cada id
+    // Obtener el formulario y agregar un evento de envío
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        // Obtener el campo de nombre y verificar si está vacío
+        var nombre = document.getElementById('Nombre');
+        if (nombre.value.trim() === '') {
+            // Mostrar una alerta si el campo está vacío
+            alert('El campo de Nombre no puede estar vacío.');
+            event.preventDefault();
+        }
+    });
+    </script>
+</body>
+</html>

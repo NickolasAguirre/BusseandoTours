@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title th:text="${titulo}">Busseando Tours</title>
+<link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet">
+
+<header th:replace="/Plantilla :: header"></header>
+</head>
+
+
+
+<body>
+
+	<div class="container-md">
+		<br>
+		<h2 class="text-success" style="letter-spacing: 3px;">DETALLE DEL
+			PAQUETE SELECCIONADO</h2>
+		<br>
+
+		<div class="card" style="width: 100rem;">
+			<div class="row">
+				<div class="col-md-6">
+					<img th:src="
+					@{/imagenes/__${paquete.imagen}__}"
+						class="img-fluid rounded w-100">
+				</div>
+				<div class="col-md-6">
+					<div class="mb-3">
+
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="border border-success text-center border-3"><h3 class="text-success">ORIGEN</h3>
+
+									<h2 th:text="${paquete.lugarSalida}"></h2></div>
+							</div>
+							
+								<div class="col-md-6">
+								<div class="border border-success text-center border-3">
+									<h3 class="text-success">DESTINO</h3>
+									<h2 class="card-title" th:text="${paquete.lugarDestino}"></h2>
+								</div>
+						</div>
+					</div>
+					<br> <br>
+
+					<div>
+						<h3>DESCRIPCION</h3>
+						<p class="card-text" th:text="${paquete.descripcion}"></p>
+
+						<h4 class="card-text"
+							th:text="|Fecha de salida: ${#temporals.format(paquete.fechaSalida, 'dd/MM/yyyy')}|"></h4>
+						<h4 class="card-text"
+							th:text="|Precio: S/${paquete.precioUnidad}|"></h4>
+						<br>
+						<div>
+							<p>*CENTRO TURISTICO</p>
+							<p>*SERVICIO TRANSPORTE</p>
+							<p>*SERVICIO ALOJAMIENTO</p>
+							<p>*SERVICIO DE ALIMENTOS</p>
+						</div>
+
+						<div class="row">
+							<div class="col-md-9"><a th:href="@{/}" class="btn btn-secondary btn-lg" role="button">RETORNAR</a></div>
+							<div class="col-md-1"><a th:href="@{/pasajero/{idPaquete}/agregar(idPaquete=${paquete.idPaquete})}" class="btn btn-success btn-lg" role="button">COMPRAR</a></div>
+							
+							
+							
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+<!-- 	Pie de pagina -->
+<footer th:replace="/Plantilla :: footer"></footer>
+</html>

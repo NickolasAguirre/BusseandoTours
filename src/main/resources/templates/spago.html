@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="head">
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Selección De Pago</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+
+<header th:replace="/Plantilla :: header"></header>
+<body>
+
+
+
+	<div class="d-flex" id="wrapper">
+
+		<!-- Page content wrapper-->
+		<div id="page-content-wrapper">
+
+			<!-- Page content-->
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+				<h1 class="display-4 fw-normal">METODO DE PAGO</h1>
+				<p class="fs-5 text-muted">Todo esta listo, solo falta
+					seleccionar tu metodo de pago preferido</p>
+					
+				
+			</div>
+
+			<main>
+				<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+
+					<div class="col">
+						<div class="card mb-4 rounded-3 shadow-sm">
+							<div class="card-header py-3">
+								<h4 class="my-0 fw-normal">OPCION 1</h4>
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">
+									TARJETA<small class="text-muted fw-light"></small>
+								</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<div>
+										<img src="/img/tarjeta.jpg" alt="tarjeta image"
+											class="w-100 vh-50" style="object-fit: cover;">
+									</div>
+									<li>Metodo de tarjeta visa</li>
+
+								</ul>
+								<a
+									th:href="@{/pago/{idPaquete}/{idPasajero}/tarjeta(idPaquete=${idPaquete},idPasajero=${pasajero.idPasajero})}" class="w-100 btn btn-lg btn-success">SELECCIONAR</a>
+										
+									
+							</div>
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="card mb-4 rounded-3 shadow-sm">
+							<div class="card-header py-3">
+								<h4 class="my-0 fw-normal">OPCION 2</h4>
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">
+									YAPE<small class="text-muted fw-light"></small>
+								</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<div>
+										<img src="/img/yape.jpg" alt="tarjeta image"
+											class="w-100 vh-50" style="object-fit: cover;">
+									</div>
+									<li>Metodo de billetera digital</li>
+								</ul>
+							
+									<a
+									th:href="@{/pago/{idPaquete}/{idPasajero}/yape(idPaquete=${idPaquete},idPasajero=${pasajero.idPasajero})}" class="w-100 btn btn-lg btn-success">SELECCIONAR</a>
+										
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="col">
+						<div class="card mb-4 rounded-3 shadow-sm">
+							<div class="card-header py-3">
+								<h4 class="my-0 fw-normal">OPCION 3</h4>
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">
+									PAGO EFECTIVO<small class="text-muted fw-light"></small>
+								</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<div>
+										<img src="/img/pagoefectivo.jpg" alt="tarjeta image"
+											class="w-100 vh-50" style="object-fit: cover;">
+									</div>
+									<li>Metodo de pago efectivo</li>
+								</ul>
+								<a
+									th:href="@{/pago/{idPaquete}/{idPasajero}/efectivo(idPaquete=${idPaquete},idPasajero=${pasajero.idPasajero})}" class="w-100 btn btn-lg btn-success">SELECCIONAR</a>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<!-- 	Pie de pagina -->
+			<footer class="container py-5">
+				<div class="row" bis_skin_checked="1">
+					<div class="col-12 col-md" bis_skin_checked="1">
+						<small class="d-block mb-3 text-muted">© 2023</small>
+					</div>
+					<div class="col-6 col-md" bis_skin_checked="1">
+						<h5>Redes</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="link-secondary" href="#">Instagram</a></li>
+							<li><a class="link-secondary" href="#">Facebook</a></li>
+							<li><a class="link-secondary" href="#">Twitter</a></li>
+							<li><a class="link-secondary" href="#">WhatsApp</a></li>
+						</ul>
+					</div>
+					<div class="col-6 col-md" bis_skin_checked="1">
+						<h5>Contacto</h5>
+						<ul class="list-unstyled text-small">
+							<li><a class="link-secondary" href="#">Dirección: Av.
+									San Juan 314</a></li>
+							<li><a class="link-secondary" href="#">Telf: 953 999 337</a></li>
+							<li><a class="link-secondary" href="#">Correo:
+									busseandocontact@busseando.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</footer>
+
+
+		</div>
+	</div>
+	<!-- Bootstrap core JS-->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<!-- Core theme JS-->
+	<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

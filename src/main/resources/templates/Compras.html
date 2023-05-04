@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Plantilla :: head">
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet">
+
+</head>
+<body>
+
+	<header th:replace="/Plantilla :: header"></header>
+
+
+	<br>
+	
+	
+	<div class="container">
+
+		<br>
+			
+				
+					
+		<div class="row">
+			<h2 class="text-success" style="letter-spacing: 3px;" align="center">LISTA DE
+				COMPRAS</h2> <br><br>
+			
+		</div>
+		<br>
+		<h5>
+		<br>
+			
+			<table class="table table-striped table-bordered">
+			
+										
+				<thead class="table-dark">
+					<tr>
+						<th>Id</th>
+						<th>Fecha de Emision</th>
+						<th>Número de Documento</th>
+						<th>Nombre</th>
+						<th>Tipo de Documento</th>
+						<th>PAQUETE</th>
+						<th>PRECIO PAQUETE</th>
+						<th>PASAJERO</th>
+						<th>NOMBRE PASAJERO</th>
+						<th>USUARIO</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="venta: ${ventas}">
+						<td th:text="${venta.IdVentas}">Id</td>
+						<td
+							th:text="*{#temporals.format(venta.FechaEmision, 'dd/MM/yyyy')}">Fecha
+							Emision</td>
+			
+						<td th:text="${venta.NumeroDoc}">NumeroDocumento</td>
+						<td th:text="${venta.Nombre}">Nombre</td>
+						<td th:text="${venta.TipoDoc}">TipoDocumento</td>
+						<td th:text="${venta.Paquete.idPaquete}">PAQUETE</td>
+						<td th:text="${venta.Paquete.precioUnidad}">PRECIO</td>
+						<td th:text="${venta.Pasajero.idPasajero}">PASAJERO</td>
+						<td th:text="${venta.Pasajero.nombre}">NOMBRE PASAJERO</td>
+						<td th:text="${venta.Usuario.get(0).nombre}">USUARIO</td>
+					</tr>
+
+				</tbody>
+				
+			</table>
+		</h5>
+	</div>
+	
+</body>
+
+</html>

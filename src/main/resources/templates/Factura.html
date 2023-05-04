@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Plantilla :: head">
+<meta charset="UTF-8">
+</head>
+<body onload="document.getElementById('fecha').value = fechaActual();">
+	<header th:replace="/Plantilla :: header"></header>
+
+	<br>
+
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="card mt-3">
+					<div class="card-body">
+
+
+						<form th:action="@{/ventas/saveFactura}" method="post"
+							th:object="${cabezera}" enctype="multipart/form-data">
+
+							<input type="hidden" th:field="*{Pasajero}" name="idPasajero"
+								id="Pasajero" th:value="${idPasajero}"> 
+								
+								<input
+								type="hidden" th:field="*{Paquete}" name="idPaquete"
+								id="Paquete" th:value="${idPaquete}">
+
+
+							<h1 class="text-center mb-5">
+								<input type="text" th:field="*{TipoDoc}" class="text-center"
+									id="TipoDoc" readonly style="border: none;">
+							</h1>
+							<hr>
+
+							<div class="row">
+								<h4>DATOS</h4>
+
+								<div class="col-6">
+
+									<p>
+										<strong>NÚMERO RUC:</strong><br> <input type="text"
+											th:field="*{NumeroDoc}" class="form-control form-control-lg"
+											id="NumeroDoc" placeholder="NÚMERO DE DOCUMENTO">
+									</p>
+
+									<p>
+										<strong>RAZON SOCIAL:</strong><br> 
+											<input type="text"
+											th:field="*{Nombre}" class="form-control form-control-lg"
+											id="Nombre" placeholder="NOMBRE">
+									</p>
+								</div>
+								<div class="col-6">
+									<input type="hidden" th:field="*{usuario}" name="idUsuario" value="${id}" />
+								</div>
+							</div>
+
+							
+							<hr>
+							<div class="row">
+								<h4>PASAJERO</h4>
+
+
+								<div class="col-6">
+									<p>
+										<strong>Fecha:</strong> <input type="date"
+											th:field="*{FechaEmision}"
+											class="form-control form-control-lg" id="FechaEmision"
+											placeholder="Fecha Emision" readonly style="border: none;">
+									</p>
+									<p>
+										<strong>APELLIDOS:<input type="text"
+											class="form-control form-control-lg"
+											th:value="${pasajero.apellidoPaterno}" readonly></strong>
+									</p>
+
+
+									<p>
+										<strong>E-MAIL:<input type="text"
+											class="form-control form-control-lg"
+											th:value="${pasajero.correo}" readonly></strong>
+									</p>
+
+								</div>
+								<div class="col-6">
+
+
+									<p>
+										<strong>TELEFONO:</strong> <input type="text"
+											class="form-control form-control-lg"
+											th:value="${pasajero.telefono}" readonly
+											style="border: none;">
+									</p>
+									<p>
+										<strong>NOMBRE:<input type="text"
+											class="form-control form-control-lg"
+											th:value="${pasajero.nombre}" readonly></strong>
+									</p>
+									<p>
+										<strong>DNI:<input type="text"
+											class="form-control form-control-lg"
+											th:value="${pasajero.numDoc}" readonly></strong>
+									</p>
+								</div>
+							</div>
+
+
+							<hr>
+							<h4>DETALLE</h4>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Paquete</th>
+
+
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+
+
+											<td><input type="text"
+												class="form-control form-control-lg"
+												th:value="${paquete.lugarDestino}" readonly /></td>
+
+											<td><input type="text"
+												class="form-control form-control-lg"
+												th:value="${paquete.precioUnidad}" readonly /></td>
+
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+							<div class="card-footer bg-success text-center">
+								<button type="submit" class="btn btn-outline-light me-2 btn-lg">GENERAR</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<script>
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //Enero es 0
+		var yyyy = today.getFullYear();
+		var formattedDate = yyyy + '-' + mm + '-' + dd;
+		document.getElementById("FechaEmision").value = formattedDate;
+	</script>
+	<script>
+		document.getElementById("TipoDoc").value = "FACTURA";
+	</script>
+
+</body>
+</html>

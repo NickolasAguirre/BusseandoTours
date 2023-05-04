@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>GRACIAS!!</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/thymeleaf/3.0.11.RELEASE/thymeleaf-layout-dialect/css/layout/styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/thymeleaf/3.0.11.RELEASE/thymeleaf.css" />
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<header th:replace="/Plantilla :: header"></header>
+</head>
+
+<body>
+<br>
+
+<div class="container text-center" >
+<div class="card" style="width: 94rem;">
+<h1 >Gracias por utilizar nuestro servicio!</h1>
+
+<h1 >Su Boleta puede descargarlo aqui!</h1>
+
+<a th:href="@{/ventas/exportarPDFBoleta/{IdVentas}(IdVentas=${venta.IdVentas})}" class="btn btn-secondary">Descargar</a>
+<h1>Esperamos que disfrute su viaje y que regrese pronto.</h1>
+<h1>Se le direccionara a la pagina principal en<p class="text-danger" id="contador"></p></h1></div></div>
+
+<script type="text/javascript">
+    setTimeout(function() {
+        window.location = "/";
+    }, 10000); // 1000 milisegundos = 1 segundo
+</script>
+<script type="text/javascript">
+    var contador = 11; // Cambiar el valor según lo necesario
+
+    var intervalo = setInterval(function() {
+        document.getElementById("contador").innerHTML = contador;
+        contador--;
+        if (contador < 0) {
+            clearInterval(intervalo);
+        }
+    }, 1000); // Actualizar cada segundo
+</script>
+</body>
+<footer th:replace="/Plantilla :: footer"></footer>
+</html>
+
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:fragment="head">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Ingrese su tarjeta</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    </head>
+    
+    
+    <body>
+        <header th:replace="/Plantilla :: header"></header>
+                <!-- Page content-->
+                
+                
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal"></h1>
+    </div>
+
+  <main>
+  <div class="container" >
+    <div class="card" style="width: 94rem;">
+      <div class="pricing-header p-3 pb-md-4 mx-auto ">
+        <h1 class="text-success text-center" style="letter-spacing: 3px;">TARJETA</h1>
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+          <h4>
+            <div class="col-sm-12">
+            
+              <label for="firstName" class="form-label">Nombres</label>
+              <input type="text" class="form-control" id="firstName" placeholder="Digite sus nombre completo " value="" required>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="lastName" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Digite su apellido completo" value="" required>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Correo</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Direccion</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+            </div></h4>
+
+          <hr class="my-4">
+          
+			<h4>
+          <div class="row gy-3">
+            <div class="col-md-6">
+            
+              <label for="cc-name" class="form-label">Tipo de tarjeta</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="Tarjeta..." required>
+              <small class="text-muted">VISA o MASTERCARD</small>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">Numero de la tarjeta</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="000-000000000-00" required>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-expiration" class="form-label">Fecha de expiracion</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="00-00" required>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-cvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="00-00" required>
+            </div>
+            </h4>
+          </div>
+          </div>
+          			<div class="h5 d-block mb-3 text-muted text-center">
+					<h4>Total a pagar:
+						<span
+						th:text="${paquetetarjeta.precioUnidad}"></span></h4>
+						
+          		
+					<input type="checkbox" id="boleta" onclick="updateLink()">BOLETA
+					<input type="checkbox" id="factura" onclick="updateLink()">FACTURA</h4>
+					<br><br>
+					<a class="w-100 btn btn-lg btn-success" id="enlace-compra">CONTINUAR</a>
+					</div>
+        </form>
+      </div>
+    </div>
+    </div>
+    
+    <!-- Bootstrap core JS-->
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+        <!-- Core theme JS-->
+        <script th:src="@{/js/scripts.js}"></script>
+        
+        
+  </main>
+
+	<script th:inline="javascript">
+    function updateLink() {
+    var idPaquete = [[${idPaquete}]];
+    var idPasajero = [[${pasajero.idPasajero}]];
+    var id = [[${#authentication.principal.id}]];
+    var esFactura = document.getElementById("factura").checked;
+    var esBoleta = document.getElementById("boleta").checked;
+    var enlaceCompra = document.getElementById("enlace-compra");
+    
+        if (esFactura && esBoleta) {
+        	
+        	enlaceCompra.href = "/pago/__${idPaquete}__/__${pasajero.idPasajero}__/tarjeta".replace("__${idPaquete}__", idPaquete).replace("__${pasajero.idPasajero}__", idPasajero);
+        } else if (esFactura) {
+            // Si solo el checkbox de factura está marcado, se cambia el enlace para factura
+            enlaceCompra.href = "/ventas/nuevaFactura?idPaquete=__${idPaquete}__&idPasajero=__${pasajero.idPasajero}__&id=__${id}__".replace("__${idPaquete}__", idPaquete).replace("__${pasajero.idPasajero}__", idPasajero).replace("__${id}__", id);
+        	return;
+        } else if (esBoleta) {
+            // Si solo el checkbox de boleta está marcado, se cambia el enlace para boleta
+        	enlaceCompra.href = "/ventas/nuevaBoleta?idPaquete=__${idPaquete}__&idPasajero=__${pasajero.idPasajero}__&id=__${id}__".replace("__${idPaquete}__", idPaquete).replace("__${pasajero.idPasajero}__", idPasajero).replace("__${id}__", id);
+        } else {
+            return;
+        }
+    }
+</script>
+
+   <!-- 	Pie de pagina -->
+        <footer th:replace="/Plantilla :: footer"></footer>
+
+                    
+                    
+        
+    </body>
+</html>

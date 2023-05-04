@@ -1,0 +1,32 @@
+/* stylelint-disable selector-list-comma-newline-after */
+
+table{
+	margin-top: 10px;
+	caption-side: top;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+th{
+background-color: yellow;
+}
+
+td{
+background-color: gray;
+}
+
+caption{
+    padding-top: 20px;
+     font-style: italic;
+}
+
+td,th{
+border: 2px solid black;
+padding-left: 20px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-top: 10px;
+}
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Registro de usuarios</title>
+<!-- Latest compiled and minified CSS -->
+<link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet">
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+
+	<header>
+<div
+	class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-success">
+	<!-- Copyright -->
+	<div class="text-white mb-3 mb-md-0"><a class="navbar-brand col-lg-3 me-10 text-white" href="/login"
+				th:text="BUSSEANDOTOURS"></a></div>
+</div>
+</header>
+	
+
+	<br>
+	<br>
+
+	<div class="container ">
+		<div class="row">
+		<div class="d-flex justify-content-center">
+			<div class="col-md-6 col-md-offset-3">
+				<div th:if=${param.exito}>
+					<div class="alert alert-info">Se ha registrado exitosamente a
+						la aplicación</div>
+				</div>
+
+				<h1>Regístrate</h1>
+				<form th:action="@{/registro}" method="post" th:object="${usuario}">
+					<div class="form-group">
+						<label class="col-md-2" for="nombre">Nombre : </label> <input
+							id="nombre" type="text" class="form-control form-control-lg" th:field="*{nombre}"
+							required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-2"for="apellido">Apellido : </label> <input
+							id="apellido" class="form-control form-control-lg" th:field="*{apellido}"
+							required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-2" for="email">Email : </label> <input
+							id="email" type="email" class="form-control form-control-lg" th:field="*{email}"
+							required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-2" for="password">Password : </label> <input
+							type="password" id="password" class="form-control form-control-lg"
+							th:field="*{password}" required autofocus="autofocus">
+					</div>
+					<br>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success -lg">Registrar</button>
+						<br><br>
+						<h4>Si estas registrado <a class="text-success" th:href="@{/login}">INICIA SESION AQUI</a></h4>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

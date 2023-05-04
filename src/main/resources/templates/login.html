@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Inicio de sesión</title>
+<!-- Latest compiled and minified CSS -->
+<link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet">
+</head>
+
+<header>
+<div
+	class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-success">
+	<!-- Copyright -->
+	<div class="text-white mb-3 mb-md-0"><h1>BUSSEANDO TOURS</h1></div>
+</div>
+</header>
+
+<body>
+<section class="vh-500">
+	<div class="container-fluid h-custom">
+		<div
+			class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-md-1 col-lg-5 col-xl-20">
+				<img src="/img/Logo.jpeg" class="img-fluid" alt="Sample image">
+			</div>
+			<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-0">
+				<form th:action="@{/login}" method="post">
+
+					<div th:if=${param.error}>
+						<div class="alert alert-danger">Usuario o contraseña
+							inválidos</div>
+					</div>
+
+					<div th:if=${param.logout}>
+						<div class="alert alert-info">Ha cerrado sesión exitosamente</div>
+					</div>
+					<br>
+
+					<h1 class="text-success" style="letter-spacing: 3px;">INICIO
+						DE SESION</h1>
+					<br>
+
+					<!-- Email input -->
+					<div class="form-outline mb-4">
+						<h3 class="form-label" for="form3Example3"
+							style="letter-spacing: 3px;">CORREO ELECTRONICO:</h3>
+						<input type="email" id="username"
+							class="form-control form-control-lg" required=""
+							autofocus="autofocus" placeholder="Digite su correo electronico"
+							name="username" /> <label class="form-label" for="txtcorreo"></label>
+
+					</div>
+
+					<!-- Password input -->
+					<div class="form-outline mb-3">
+						<h3 class="form-label" for="form3Example3" style="letter-spacing: 3px;">CONTRASEÑA:</h3>
+						<input type="password" id="password"
+							class="form-control form-control-lg" required=""
+							autofocus="autofocus" placeholder="Digite su contraseña"
+							name="password" /> <label class="form-label" for="txtpassword"></label>
+					</div>
+
+
+					<div class="text-center text-lg-start mt-4 pt-2">
+						<input type="submit" class="form-control btn btn-success"
+							name="login-submit" id="login-submit"
+							value="INICIAR SESION" /> <br>
+						<br>
+						<br> <span class="small fw-bold mt-2 pt-1 mb-0 text-center">
+							<h3>
+								Si eres nuevo usuario, <a th:href="@{/registro}"
+									class="link-danger">regístrate aqui</a>
+							</h3>
+						</span>
+						
+						
+						
+
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+</section>
+
+<!-- 	Pie de pagina -->
+	<footer class="container py-5">
+		<div
+			class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-success">
+			<!-- Copyright -->
+			<div class="text-white mb-3 mb-md-0">Copyright © 2020. All
+				rights reserved.</div>
+		</div>
+	</footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

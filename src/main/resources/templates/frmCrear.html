@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Plantilla :: head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="/Plantilla :: header"></header>
+
+	<br>
+	<h5>
+		<div class="container col-7">
+		
+			<div class="card bg-light ">
+
+				<div class="card-header bg-success text-white" style="letter-spacing: 3px;">FORMULARIO : NUEVO PAQUETE</div>
+
+				<div class="card-body">
+
+
+					<form th:action="@{/paquete/save}" th:object="${paquete}"
+						method="post" enctype="multipart/form-data">
+						
+						
+
+						<div class="form-group row">
+							<input type="hidden" th:field="*{idPaquete}"> 
+							<label
+								for="descripcion" class="col-md-2">Descripcion:</label><br>
+							<br> <input type="text" th:field="*{descripcion}"
+								class="form-control form-control-lg" id="descripcion"
+								placeholder="Descripcion del paquete" > 
+								<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('Descripcion')}"
+								th:errors="*{Descripcion}"></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="fechaRegreso" class="col-md-2">Fecha Regreso:</label><br>
+							<br> <input type="date" th:field="*{fechaRegreso}"
+								class="form-control form-control-lg" id="fechaRegreso"
+								placeholder="Fecha de Regreso">
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="fechaSalida" class="col-md-2">Fecha Salida:</label> <br>
+							<br> <input type="date" th:field="*{fechaSalida}"
+								class="form-control form-control-lg" id="fechaSalida"
+								placeholder="Fecha de Salida">
+
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="estado" class="col-md-2">Estado:</label><br>
+							<br> <input type="text" th:field="*{estado}"
+								class="form-control form-control-lg" id="estado"
+								placeholder="Estado"> 
+								<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('Estado')}"
+								th:errors="*{Estado}"></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="lugarDestino" class="col-md-2">Lugar Destino:</label><br>
+							<br> <input type="text" th:field="*{lugarDestino}"
+								class="form-control form-control-lg" id="lugarDestino"
+								placeholder="Lugar de Destino"> 
+								<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('LugarDestino')}"
+								th:errors="*{LugarDestino}"></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="lugarSalida" class="col-md-2">Lugar Salida:</label><br>
+							<br> <input type="text" th:field="*{lugarSalida}"
+								class="form-control form-control-lg" id="lugarSalida"
+								placeholder="Lugar de Salida">
+								 <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('LugarSalida')}"
+								th:errors="*{LugarSalida}"></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="precioUnidad" class="col-md-2">Precio:</label> <br>
+							<br> <input type="text" th:field="*{precioUnidad}"
+								class="form-control form-control-lg" id="precioUnidad"
+								placeholder="Precio Unidad"> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('PrecioUnidad')}"
+								th:errors="*{PrecioUnidad}"></small>
+						</div>
+						<br>
+
+						<div class="form-group row">
+							<label for="imagen" class="col-md-2">Imagen:</label> <br> <br>
+							<input type="file" name="file" id="imagen"> <small></small>
+						</div>
+						<br>
+
+
+						<div class="card-footer bg-success">
+							<input type="submit" class="btn btn-outline-light me-2 btn-lg" />
+						</div>
+						<br>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</h5>
+	
+	
+
+</body>
+</html>

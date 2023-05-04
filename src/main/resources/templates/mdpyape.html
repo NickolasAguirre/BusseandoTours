@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="head">
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Paga con YAPE</title>
+
+<!-- Core theme CSS (includes Bootstrap)-->
+<link th:href="@{/css/styles.css}" rel="stylesheet" />
+<header th:replace="/Plantilla :: header"></header>
+</head>
+
+
+<body>
+
+	<!-- Page content-->
+
+
+	<br>
+<body>
+
+
+
+
+	<div class="container text-center">
+		<form>
+			<div class="card" style="width: 94rem;">
+				<h1 class="text-success" style="letter-spacing: 3px;">YAPE</h1>
+				<br>
+				<h2>Escanee nuestro código QR o agregue nuestro número de
+					celular y realice el pago con Yape.</h2>
+
+
+				<br>
+
+				<div class="row  justify-content-center align-items-center">
+					<div class="col-md-1 col-lg-2 col-xl-30">
+						<img src="/img/qr.jpg" class="img-fluid" alt="Sample image">
+					</div>
+
+					<h3>
+						NOMBRE<br> <br> <span class="border border-success">123456789</span>
+					</h3>
+
+				</div>
+
+
+
+				<br>
+
+
+
+				<div>
+					<h4>
+						Total a pagar: <span th:text="${paqueteyape.precioUnidad}"></span>
+					</h4>
+					<h4>
+						Numero del pedido: <span th:text="${idPaquete}"></span>
+					</h4>
+					<br>
+				</div>
+				<div class="h5 d-block mb-3 text-muted">
+					<p>
+						INSTRUCCIONES:<br> 1. Coloca en el monto el total a pagar.<br>
+						2. Coloca en la descripción el número del pedido.<br> 3.
+						Yapea y envíanos la captura de pantalla por <a
+							class="navbar-brand text-success"
+							href="https://web.whatsapp.com/">Whatsapp.</a>
+					</p>
+					<h4>
+					<input type="checkbox" id="boleta" onclick="updateLink()">BOLETA
+					<input type="checkbox" id="factura" onclick="updateLink()">FACTURA</h4>
+
+					<a class="w-100 btn btn-lg btn-success" id="enlace-compra">CONTINUAR</a>
+					
+				</div>
+						
+		</form>
+	</div>
+	
+	
+	<script th:inline="javascript">
+    function updateLink() {
+    var idPaquete = [[${idPaquete}]];
+    var idPasajero = [[${pasajero.idPasajero}]];
+    var id = [[${#authentication.principal.id}]];
+    var esFactura = document.getElementById("factura").checked;
+    var esBoleta = document.getElementById("boleta").checked;
+    var enlaceCompra = document.getElementById("enlace-compra");
+    
+        if (esFactura && esBoleta) {
+        	
+        	enlaceCompra.href = "/pago/__${idPaquete}__/__${pasajero.idPasajero}__/yape".replace("__${idPaquete}__", idPaquete).replace("__${pasajero.idPasajero}__", idPasajero);
+        } else if (esFactura) {
+            // Si solo el checkbox de factura está marcado, se cambia el enlace para factura
+            enlaceCompra.href = "/ventas/nuevaFactura?idPaquete=__${idPaquete}__&idPasajero=__${pasajero.idPasajero}__&id=__${id}__".replace("__${idPaquete}__", idPaquete).replace("__${pasajero.idPasajero}__", idPasajero).replace("__${id}__", id);
+        	return;
+        } else if (esBoleta) {
+            // Si solo el checkbox de boleta está marcado, se cambia el enlace para boleta
+        	enlaceCompra.href = "/ventas/nuevaBoleta?idPaquete=__${idPaquete}__&idPasajero=__${pasajero.idPasajero}__&id=__${id}__".replace("__${idPaquete}__", idPaquete).replace("__${pasajero.idPasajero}__", idPasajero).replace("__${id}__", id);
+        } else {
+            return;
+        }
+    }
+</script>
+
+
+
+</body>
+
+
+<footer th:replace="/Plantilla :: footer"></footer>
+
+
+
+
+<!-- Bootstrap core JS-->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<!-- Core theme JS-->
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
